@@ -1,0 +1,21 @@
+import math
+back_money = float(input())
+coins = 0
+
+coins = coins + (back_money // 2)
+back_money = round((back_money % 2), 2)
+coins = coins + (back_money // 1)
+back_money = round((back_money % 1), 2)
+coins = coins + (back_money // 0.50)
+back_money = round((back_money % 0.50), 2)
+coins = coins + (back_money // 0.20)
+back_money = round((back_money % 0.20), 2)
+coins = coins + (back_money // 0.10)
+back_money = round((back_money % 0.10), 2)
+coins = coins + (back_money // 0.05)
+back_money = round((back_money % 0.05), 2)
+coins = coins + (back_money // 0.02)
+back_money = round((back_money % 0.02), 2)
+coins = coins + (back_money // 0.01)
+back_money = round((back_money % 0.01), 2)
+print(int(coins))

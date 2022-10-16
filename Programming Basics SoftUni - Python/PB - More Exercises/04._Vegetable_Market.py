@@ -1,0 +1,5 @@
+vegetables_price_kg = float(input())
+fruit_price_kg = float(input())
+vegetables_kg = int(input())
+fruit_kg = int(input())
+print("%.2f" % ((vegetables_kg * vegetables_price_kg + fruit_kg * fruit_price_kg)/1.94))
