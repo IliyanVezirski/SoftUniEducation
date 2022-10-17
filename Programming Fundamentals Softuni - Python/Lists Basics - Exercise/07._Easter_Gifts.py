@@ -1,21 +1,38 @@
 gifts = input().split()
+
+
+def outofstock(presents: list, item: str):
+    if item in presents:
+        for i in range(len(presents)):
+            if presents[i] == item:
+                presents[i] = None
+
+    return presents
+
+
+def required(presents: list, item: str, index: int):
+    if index in range(len(presents)):
+        presents[index] = item
+    return presents
+
+
+def justincase(presents: list, item: str):
+    presents[-1] = item
+    return presents
+
+
 command = input()
+
 while command != "No Money":
     command = command.split()
-    if command[0] == "OutOfStock":
-        for i in gifts:
-            if i == command[1]:
-                i = gifts.index(i)
-                gifts[i] = "None"
-    if command[0] == "Required":
-        index = int(command[2])
-        index2 = len(gifts) - 1
-        if index2 >= index:
-            gifts[index] = command[1]
-    if command[0] == "JustInCase":
-        last_index = len(gifts) - 1
-        gifts[last_index] = command[1]
+    gift = command[0]
+    if gift == "OutOfStock":
+        outofstock(gifts, command[1])
+    elif gift == "Required":
+        required(gifts, command[1], int(command[2]))
+    elif gift == "JustInCase":
+        justincase(gifts, command[1])
     command = input()
-while "None" in gifts:
-    gifts.remove("None")
+
+gifts = [i for i in gifts if i != None]
 print(' '.join(gifts))
