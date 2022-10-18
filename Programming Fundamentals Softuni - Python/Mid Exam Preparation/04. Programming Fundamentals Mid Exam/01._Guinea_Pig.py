@@ -18,12 +18,12 @@ The output values must be formatted to the second decimal place!
 
 food_kg = float(input())
 hay_kg = float(input())
-cover_kg = float(input())
+cover_kg: float = float(input())
 guinea_kg = float(input())
 happy = True
 food_grams = food_kg * 1000
 hay_grams = hay_kg * 1000
-cover_gram = cover_kg * 1000
+cover_grams = cover_kg * 1000
 guinea_grams = guinea_kg * 1000
 
 for day in range(1, 31):
@@ -31,8 +31,8 @@ for day in range(1, 31):
     if day % 2 == 0:
         hay_grams -= food_grams * 0.05
     if day % 3 == 0:
-        cover_gram -= guinea_grams / 3
-    if food_grams <= 0 or hay_grams <= 0 or cover_gram <= 0:
+        cover_grams -= guinea_grams / 3
+    if food_grams <= 0 or hay_grams <= 0 or cover_grams <= 0:
         print(f"Merry must go to the pet store!")
         happy = False
         break
@@ -40,5 +40,5 @@ for day in range(1, 31):
 if happy:
     food_kg = food_grams / 1000
     hay_kg = hay_grams / 1000
-    cover_kg = cover_gram / 1000
+    cover_kg = cover_grams / 1000
     print(f"Everything is fine! Puppy is happy! Food: {food_kg:.2f}, Hay: {hay_kg:.2f}, Cover: {cover_kg:.2f}.")
