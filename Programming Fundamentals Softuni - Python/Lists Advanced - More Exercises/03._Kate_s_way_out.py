@@ -64,25 +64,25 @@ while True:
     elif up_position[0] >= len(maze):
         print(f'Kate got out in {move + 1} moves')
         break
-    if maze[left_position[0]][left_position[1]] != '#' and left_position[1] < len(maze[0]):
+    if maze[left_position[0]][left_position[1]] != '#':
         old_position = position.copy()
         position = left(position)
         move += 1
         maze[old_position[0]][old_position[1]] = '#'
         maze[position[0]][position[1]] = 'k'
-    elif maze[right_position[0]][right_position[1]] != "#" and right_position[1] < len(maze[0]):
+    elif maze[right_position[0]][right_position[1]] != "#":
         old_position = position.copy()
         position = right(position)
         move += 1
         maze[old_position[0]][old_position[1]] = "#"
         maze[position[0]][position[1]] = 'k'
-    elif maze[down_position[0]][down_position[1]] != "#" and down_position[0] < len(maze):
+    elif maze[down_position[0]][down_position[1]] != "#":
         old_position = position.copy()
         position = down(position)
         move += 1
         maze[old_position[0]][old_position[1]] = '#'
         maze[position[0]][position[1]] = 'k'
-    elif maze[up_position[0]][up_position[1]] != '#' and up_position[0] < len(maze):
+    elif maze[up_position[0]][up_position[1]] != '#':
         old_position = position.copy()
         position = up(position)
         move += 1
