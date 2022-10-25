@@ -32,5 +32,4 @@ for key, value in exam.items():
         if v:
             print(f"{k} | {v}")
 print(f"Submissions:")
-for key, value in submissions.items():
-    print(f"{key} - {value}")
+[print(f"{key} - {value}")for key, value in submissions.items()]
