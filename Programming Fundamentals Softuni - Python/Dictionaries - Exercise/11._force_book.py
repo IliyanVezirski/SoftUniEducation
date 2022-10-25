@@ -6,56 +6,43 @@ user_side = ''
 old_side_to_change = ""
 while command != "Lumpawaroo":
     if "|" in command:
-        command = command.split(' | ')
-        side = command[0]
+        command = command.split(" | ")
         user = command[1]
+        side = command[0]
         for key, value in users_side.items():
-            if user in value:
-                user_found = True
-                user_side = key
-        if side not in users_side.keys():
+            for v in value:
+                if value == user:
+                    user_found = True
+        if not user_found and side not in users_side.keys():
             users_side[side] = [user]
         elif user_found:
-            continue
+            users_side[side].append(user)
+            user_found = False
         else:
-            new_users = users_side[side]
-            new_users = new_users.append(user)
-            users_side[side] = new_users
-    elif "->" in command:
+            user_found = False
+
+
+    else:
         command = command.split(" -> ")
         user = command[0]
         side = command[1]
-        old_side = ''
+        user_side = ''
         for key, value in users_side.items():
-            if user in value:
-                user_found = True
-                user_side = key
-                break
-        if user_found and users_side != side:
-            remove_user = users_side[user_side]
-            remove_user.remove(user)
-            users_side[user_side] = remove_user
-            new_side = users_side[side]
-            new_side.append(user)
-            users_side[side] = new_side
-            print(f"{user} joins the {side} side!")
-        elif side in users_side.keys():
-            old_side = users_side[side]
-            old_side.append(user)
-            users_side[side] = old_side
-            print(f"{user} joins the {side} side!")
+            for v in value:
+                if v == user:
+                    user_found = True
+                    user_side = key
+        if user_found:
+            users_side[user_side].pop()
+            users_side[side].append(user)
+        elif not user_found and side in users_side.keys():
+            users_side[side].append(user)
         else:
-            users_side[side] = user
-            print(f"{user} joins the {side} side!")
+            users_side[side] = [user]
+        print(f"{user} joins the {side} side!")
     command = input()
-    user_found = False
-    user_side = ''
-    old_side_to_change = ""
-dict_to_print = {}
-for k, v in users_side.items():
-    if len(v) > 0:
-        dict_to_print[k] = v
-for key, value in dict_to_print.items():
-    print(f"Side: {key}, Members: {len(value)}")
-    for users in value:
-        print(f"! {users}")
+for key, value in users_side.items():
+    if len(value) > 0:
+        print(f"Side: {key}, Members: {len(value)}")
+        for v in value:
+            print(f"! {v}")
