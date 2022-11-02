@@ -1,47 +1,47 @@
 command = input()
+users = {}
 
-users_side = {}
-user_found = False
-user_side = ''
-old_side_to_change = ""
+
+def no_side(dictionary: dict, side: str, user: str):
+    dictionary[side] = [user]
+    return dictionary
+
+
+def no_user(dictionary: dict, side: str, user: str):
+    dictionary[side] = [user]
+    return dictionary
+
+
 while command != "Lumpawaroo":
+
     if "|" in command:
         command = command.split(" | ")
-        user = command[1]
-        side = command[0]
-        for key, value in users_side.items():
-            for v in value:
-                if value == user:
-                    user_found = True
-        if not user_found and side not in users_side.keys():
-            users_side[side] = [user]
-        elif user_found:
-            users_side[side].append(user)
-            user_found = False
-        else:
-            user_found = False
-
-
+        force_side = command[0]
+        force_user = command[1]
+        if force_side in users.keys():
+            for key, value in users.items():
+                if force_user in value:
+                    user_in = True
+            if user_in:
+                user_in = False
+                command = input()
+                continue
     else:
         command = command.split(" -> ")
-        user = command[0]
-        side = command[1]
-        user_side = ''
-        for key, value in users_side.items():
-            for v in value:
-                if v == user:
-                    user_found = True
-                    user_side = key
-        if user_found:
-            users_side[user_side].pop()
-            users_side[side].append(user)
-        elif not user_found and side in users_side.keys():
-            users_side[side].append(user)
-        else:
-            users_side[side] = [user]
-        print(f"{user} joins the {side} side!")
+        force_side = command[1]
+        force_user = command[0]
+        print(f"{force_user} joins the {force_side} side!")
+
+    if force_side in users.keys():
+        for key, value in users.items():
+            if force_user in value:
+                value.remove(force_user)
+        users[force_side].append(force_user)
+
+    else:
+        no_user(users, force_side, force_user)
     command = input()
-for key, value in users_side.items():
+for key, value in users.items():
     if len(value) > 0:
         print(f"Side: {key}, Members: {len(value)}")
         for v in value:
