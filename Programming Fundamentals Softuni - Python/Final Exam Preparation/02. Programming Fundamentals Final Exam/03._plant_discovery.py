@@ -25,29 +25,59 @@ Output
 """
 
 
-def update():
-    pass
+def update(plants_rarity: dict, plant: str, new_rarity: str):
+    plants_rarity[plant] = new_rarity
+    return plants_rarity
 
 
-def rate():
-    pass
+def rate(plants_rating: dict, plant: str, rating: int):
+    if plant in plants_rating:
+        plants_rating[plant].append(rating)
+    else:
+        plants_rating[plant] = [rating]
+    return plants_rating
 
 
-def reset():
-    pass
+def reset(plants_rating: dict, plant: str):
+    plants_rating[plant] = [0]
+    return plants_rating
 
 
 plants = {}
-
+plants_rating = {}
 plants_number = int(input())
 
 for i in range(plants_number):
     plants_input = input().split("<->")
     plants[plants_input[0]] = plants_input[1]
 
+plant_rating = input()
 
-command = input()
+while plant_rating != "Exhibition":
+    plant_rating = plant_rating.split(' - ')
 
+    plant = plant_rating[0].split(": ")
+    command = plant[0]
+    plant = plant[1]
+    if plant not in plants.keys():
+        print("error")
+        continue
+    if command == "Rate":
+        points = plant_rating[1]
+        plant_rating = rate(plants_rating, plant, int(points))
+    elif command == "Update":
+        points = plant_rating[1]
+        plants = update(plants, plant, points)
+    elif command == "Reset":
+        plants_rating = reset(plants_rating, plant)
 
-while command != "Exhibition":
-    command = command.split()
+    plant_rating = input()
+for key, value in plants_rating.items():
+    if value == [0]:
+        average_value = 0
+    else:
+        average_value = sum(value) / len(value)
+    plants_rating[key] = average_value
+print(f"Plants for the exhibition:")
+for key, value in plants.items():
+    print(f"- {key}; Rarity: {value}; Rating: {plants_rating[key]:.2f}")
