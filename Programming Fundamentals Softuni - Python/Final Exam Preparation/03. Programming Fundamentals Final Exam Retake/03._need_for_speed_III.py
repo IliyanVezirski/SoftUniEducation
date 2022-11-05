@@ -50,6 +50,7 @@ def drive(garage: dict, car: str, distance: int, needed_fuel: int):
         print(f"Time to sell the {car}!")
     return garage
 
+
 def refuel(garage: dict, car: str, fuel):
     if garage[car][1] + fuel > 75:
         needed_fuel = 75 - garage[car][1]
