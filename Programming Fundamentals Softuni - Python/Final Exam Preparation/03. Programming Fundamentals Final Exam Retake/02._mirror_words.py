@@ -1,8 +1,10 @@
 """
 The SoftUni Spelling Bee competition is here. But it`s not like any other Spelling Bee competition out there.
-It`s different and a lot more fun! You, of course, are a participant, and you are eager to show the competition that you are the best, so go ahead,
+It`s different and a lot more fun! You, of course, are a participant, and you are eager to show the competition that you
+are the best, so go ahead,
 learn the rules and win!
-On the first line of the input, you will be given a text string. To win the competition, you have to find all hidden word pairs,
+On the first line of the input, you will be given a text string. To win the competition, you have to find all hidden
+ word pairs,
  read them, and mark the ones that are mirror images of each other.
 First of all, you have to extract the hidden word pairs. Hidden word pairs are:
 •	Surrounded by "@" or "#" (only one of the two) in the following pattern #wordOne##wordTwo# or @wordOne@@wordTwo@
