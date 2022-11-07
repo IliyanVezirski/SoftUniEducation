@@ -34,49 +34,49 @@ o	"{hero name} healed for {amount recovered} HP!"
 """
 
 
-def cast_spell(heroes: dict, hero_name: str, mana_needed: int, spell_name: str):
-    if heroes[hero_name][1] - mana_needed < 0:
+def cast_spell(current_heroes: dict, hero_name: str, mana_needed: int, spell_name: str):
+    if current_heroes[hero_name][1] - mana_needed < 0:
         print(f"{hero_name} does not have enough MP to cast {spell_name}!")
-        return heroes
+        return current_heroes
     else:
-        heroes[hero_name][1] -= mana_needed
-        print(f"{hero_name} has successfully cast {spell_name} and now has {heroes[hero_name][1]} MP!")
-        return heroes
+        current_heroes[hero_name][1] -= mana_needed
+        print(f"{hero_name} has successfully cast {spell_name} and now has {current_heroes[hero_name][1]} MP!")
+        return current_heroes
 
 
-def damage(heroes: dict, hero_name: str, damage: int, attacker: str):
-    heroes[hero_name][0] -= damage
-    if heroes[hero_name][0] > 0:
-        print(f"{hero_name} was hit for {damage} HP by {attacker} and now has {heroes[hero_name][0]} HP left!")
-        return heroes
+def damage(current_heroes: dict, hero_name: str, damage: int, attacker: str):
+    current_heroes[hero_name][0] -= damage
+    if current_heroes[hero_name][0] > 0:
+        print(f"{hero_name} was hit for {damage} HP by {attacker} and now has {current_heroes[hero_name][0]} HP left!")
+        return current_heroes
     else:
         print(f"{hero_name} has been killed by {attacker}!")
-        del heroes[hero_name]
-        return heroes
+        del current_heroes[hero_name]
+        return current_heroes
 
 
-def recharge(heroes: dict, hero_name: str, amount: int):
-    if heroes[hero_name][1] + amount >= 200:
-        gained_mana = 200 - heroes[hero_name][1]
+def recharge(current_heroes: dict, hero_name: str, amount: int):
+    if current_heroes[hero_name][1] + amount >= 200:
+        gained_mana = 200 - current_heroes[hero_name][1]
         print(f"{hero_name} recharged for {gained_mana} MP!")
-        heroes[hero_name][1] = 200
-        return heroes
+        current_heroes[hero_name][1] = 200
+        return current_heroes
     else:
-        heroes[hero_name][1] += amount
+        current_heroes[hero_name][1] += amount
         print(f"{hero_name} recharged for {amount} MP!")
-        return heroes
+        return current_heroes
 
 
-def heal(heroes: dict, hero_name: str, amount: int):
-    if heroes[hero_name][0] + amount >= 100:
-        gained_hp = 100 - heroes[hero_name][0]
-        heroes[hero_name][0] = 100
+def heal(current_heroes: dict, hero_name: str, amount: int):
+    if current_heroes[hero_name][0] + amount >= 100:
+        gained_hp = 100 - current_heroes[hero_name][0]
+        current_heroes[hero_name][0] = 100
         print(f"{hero_name} healed for {gained_hp} HP!")
-        return heroes
+        return current_heroes
     else:
-        heroes[hero_name][0] += amount
+        current_heroes[hero_name][0] += amount
         print(f"{hero_name} healed for {amount} HP!")
-        return heroes
+        return current_heroes
 
 
 heroes = {}
