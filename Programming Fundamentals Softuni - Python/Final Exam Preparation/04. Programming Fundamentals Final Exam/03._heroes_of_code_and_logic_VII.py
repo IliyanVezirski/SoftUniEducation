@@ -1,13 +1,15 @@
 """
 You got your hands on the most recent update on the best MMORPG of all time – Heroes of Code and Logic.
 You want to play it all day long! So cancel all other arrangements and create your party!
-On the first line of the standard input, you will receive an integer n – the number of heroes that you can choose for your party.
- On the next n lines, the heroes themselves will follow with their hit points and mana points separated by a single space
- in the following format:
+On the first line of the standard input, you will receive an integer n – the number of heroes that you can choose for
+ your party.
+ On the next n lines, the heroes themselves will follow with their hit points and mana points
+ separated by a single space in the following format:
 "{hero name} {HP} {MP}"
 -	HP stands for hit points and MP for mana points
 -	a hero can have a maximum of 100 HP and 200 MP
-After you have successfully picked your heroes, you can start playing the game. You will be receiving different commands,
+After you have successfully picked your heroes, you can start playing the game.
+You will be receiving different commands,
 each on a new line, separated by " – ", until the "End" command is given.
 There are several actions that the heroes can perform:
 "CastSpell – {hero name} – {MP needed} – {spell name}"
@@ -44,10 +46,11 @@ def cast_spell(current_heroes: dict, hero_name: str, mana_needed: int, spell_nam
         return current_heroes
 
 
-def damage(current_heroes: dict, hero_name: str, damage: int, attacker: str):
-    current_heroes[hero_name][0] -= damage
+def damage(current_heroes: dict, hero_name: str, taken_damage: int, attacker: str):
+    current_heroes[hero_name][0] -= taken_damage
     if current_heroes[hero_name][0] > 0:
-        print(f"{hero_name} was hit for {damage} HP by {attacker} and now has {current_heroes[hero_name][0]} HP left!")
+        print(f"{hero_name} was hit for {taken_damage} HP by {attacker} and now has {current_heroes[hero_name][0]} "
+              f"HP left!")
         return current_heroes
     else:
         print(f"{hero_name} has been killed by {attacker}!")
