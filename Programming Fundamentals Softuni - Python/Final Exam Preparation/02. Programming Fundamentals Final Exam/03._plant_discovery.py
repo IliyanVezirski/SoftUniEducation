@@ -24,14 +24,6 @@ Output
 
 """
 
-number_of_plants = int(input())
-plants = {}
-
-for plant in range(number_of_plants):
-    data = input()
-    data = data.split("<->")
-    plants[data[0]] = {'rarity': int(data[1]), 'rating': []}
-
 
 def rate(current_plants: dict, current_plant: str, new_rating: int):
     if current_plant not in current_plants:
@@ -56,6 +48,14 @@ def reset(current_plants: dict, current_plant: str):
     current_plants[current_plant]['rating'] = []
     return current_plants
 
+
+number_of_plants = int(input())
+plants = {}
+
+for plant in range(number_of_plants):
+    data = input()
+    data = data.split("<->")
+    plants[data[0]] = {'rarity': int(data[1]), 'rating': []}
 
 data = input()
 
