@@ -43,11 +43,11 @@ def cut(string: str, start_point: int, length_to_cut: int):
     return string
 
 
-def substitute(string: str, substring: str, substitute: str):
+def substitute(string: str, substring: str, substitute_string: str):
     if substring not in string:
         print("Nothing to replace!")
     else:
-        string = string.replace(substring, substitute)
+        string = string.replace(substring, substitute_string)
         print(string)
     return string
 
