@@ -19,17 +19,15 @@ Output
 •	Print the messages described above
 
 """
-
 import re
-
-pattern = r'(?P<sep>[=/])([A-Z][a-zA-Z]{2,})(?P=sep)'
+string = input()
+pattern = r'(?P<sep>[=/])(?P<word>[A-Z][A-Za-z]{2,})(?P=sep)'
+valid_destinations = []
+destinations = re.findall(pattern,string)
+for destination in destinations:
+    valid_destinations.append(destination[1])
 points = 0
-text = input()
-destionstions = []
-dest = re.findall(pattern, text)
-for i in range(len(dest)):
-    destionstions.append(dest[i][1])
-for el in destionstions:
-    points += len(el)
-print(f"Destinations: {', '.join(destionstions)}")
+for element in valid_destinations:
+    points += len(element)
+print(f"Destinations: {', '.join(valid_destinations)}")
 print(f"Travel Points: {points}")

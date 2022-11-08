@@ -19,49 +19,44 @@ Output
 
 """
 
-travel_route = input()
+
+def add(current_stops: str, index_to_add: int, string_to_add: str):
+    if index_to_add in range(len(current_stops)):
+        first_part = current_stops[:index_to_add]
+        second_part = current_stops[index_to_add:]
+        current_stops = first_part + string_to_add + second_part
+    print(current_stops)
+    return current_stops
 
 
-def add(travel: str, index: int, stop: str):
-    if index in range(len(travel)):
-        travel_list = []
-        for el in travel:
-            travel_list.append(el)
-        travel_list.insert(index, stop)
-        travel = ''.join(travel_list)
-        print(travel)
-    return travel
+def remove(current_stops: str, start_index: int, end_index: int):
+    if start_index in range(len(current_stops)) and end_index in range(len(current_stops)):
+        first_part = current_stops[:start_index]
+        second_part = current_stops[end_index+1:]
+        current_stops = first_part + second_part
+    print(current_stops)
+    return current_stops
 
 
-def remove(travel: str, start_index: int, end_index: int):
-
-    if start_index in range(len(travel)) and end_index in range(len(travel)):
-        deleted_item = travel[start_index:end_index+1]
-        travel = travel.replace(deleted_item, "")
-        print(travel)
-    return travel
+def switch(current_stops: str, old_string: str, new_string: str):
+    if old_string in current_stops:
+        current_stops = current_stops.replace(old_string, new_string)
+    print(current_stops)
+    return current_stops
 
 
-def switch(travel: str, old_destination: str, new_destination: str):
-    if old_destination in travel:
-        travel = travel.replace(old_destination, new_destination)
-        print(travel)
-    else:
-        print(travel)
-    return travel
-
+stops = input()
 
 command = input()
 
 while command != "Travel":
     command = command.split(":")
-
     if command[0] == "Add Stop":
-        travel_route = add(travel_route, int(command[1]), command[2])
+        stops = add(stops, int(command[1]), command[2])
     elif command[0] == "Remove Stop":
-        travel_route = remove(travel_route, int(command[1]), int(command[2]))
+        stops = remove(stops,int(command[1]), int(command[2]))
     elif command[0] == "Switch":
-        travel_route = switch(travel_route, command[1], command[2])
+        stops = switch(stops, command[1], command[2])
     command = input()
 
-print(f"Ready for world tour! Planned stops: {travel_route}")
+print(f"Ready for world tour! Planned stops: {stops}")
