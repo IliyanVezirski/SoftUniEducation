@@ -14,7 +14,7 @@ while data != "Season end":
                 if players[player][position] < skill:
                     players[player][position] = skill
             else:
-                players[player][position] = skill
+                players[player].update({position: skill})
     else:
         data = data.split(" vs ")
         player1 = data[0]
@@ -31,8 +31,12 @@ while data != "Season end":
                     if position_to_compare in player2_positions:
                         if players[player1][position_to_compare] < players[player2][position_to_compare]:
                             del players[player1]
+                            break
                         elif players[player2][position_to_compare] < players[player1][position_to_compare]:
                             del players[player2]
+                            break
+                        elif players[player2][position_to_compare] == players[player1][position_to_compare]:
+                            continue
                         else:
                             continue
 
