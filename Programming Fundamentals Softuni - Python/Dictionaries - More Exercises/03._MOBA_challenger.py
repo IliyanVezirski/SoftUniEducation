@@ -19,21 +19,22 @@ while data != "Season end":
         data = data.split(" vs ")
         player1 = data[0]
         player2 = data[1]
-        if player1 in players and player2 in players:
-            player1_positions = []
-            player2_positions = []
-            for player1_position in players[player1].keys():
-                player1_positions.append(player1_position)
-            for player2_position in players[player2].keys():
-                player2_positions.append(player2_position)
-            for position_to_compare in player1_positions:
-                if position_to_compare in player2_positions:
-                    if players[player1][position_to_compare] < players[player2][position_to_compare]:
-                        del players[player1]
-                    elif players[player2][position_to_compare] < players[player1][position_to_compare]:
-                        del players[player2]
-                    elif players[player1][position_to_compare] == players[player2][position_to_compare]:
-                        continue
+        if player1 in players.keys():
+            if player2 in players.keys():
+                player1_positions = []
+                player2_positions = []
+                for player1_position in players[player1].keys():
+                    player1_positions.append(player1_position)
+                for player2_position in players[player2].keys():
+                    player2_positions.append(player2_position)
+                for position_to_compare in player1_positions:
+                    if position_to_compare in player2_positions:
+                        if players[player1][position_to_compare] < players[player2][position_to_compare]:
+                            del players[player1]
+                        elif players[player2][position_to_compare] < players[player1][position_to_compare]:
+                            del players[player2]
+                        else:
+                            continue
 
     data = input()
 players_total_points = {}
