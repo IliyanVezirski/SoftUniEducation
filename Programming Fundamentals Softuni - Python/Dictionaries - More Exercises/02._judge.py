@@ -1,42 +1,36 @@
 judge = {}
-individual_standing = {}
-command = input()
 
-while command != "no more time":
-    command = command.split(" -> ")
-    username = command[0]
-    contest = command[1]
-    points = int(command[2])
-    if contest in judge:
-        for user in judge.values():
-            if username in user:
-                if user[username] <= points:
-                    user[username] = points
-            else:
-                judge[contest][username] = points
+data = input()
+
+while data != "no more time":
+    data = data.split(' -> ')
+    if data[1] not in judge:
+        judge[data[1]] = {data[0]: int(data[2])}
     else:
-        judge[contest] = {username: points}
-    command = input()
-
-for key, value in judge.items():
-    new_key = dict(sorted(value.items(), key=lambda v: (-v[1], v[0])))
-    judge[key] = new_key
-for key, value in judge.items():
-    for k, v in value.items():
-        if k in individual_standing:
-            individual_standing[k] += v
+        if data[0] not in judge[data[1]]:
+            judge[data[1]][data[0]] = int(data[2])
         else:
-            individual_standing[k] = v
-individual_standing = dict(sorted(individual_standing.items(), key=lambda v: (-v[1], v[0])))
+            if judge[data[1]][data[0]] < int(data[2]):
+                judge[data[1]][data[0]] = int(data[2])
 
-for key, value in judge.items():
-    print(f"{key}: {len(value)} participants")
-    counter = 0
-    for k, v in value.items():
+    data = input()
+for contest, username in judge.items():
+    judge[contest] = dict(sorted(username.items(), key=lambda kvp: (-kvp[1], kvp)))
+for contest, username in judge.items():
+    print(f"{contest}: {len(username)} participants")
+    counter = 1
+    for user, points in username.items():
+        print(f"{counter}. {user} <::> {points}")
         counter += 1
-        print(f"{counter}. {k} <::> {v}")
+individual_standings = {}
+for contest, username in judge.items():
+    for user, points in username.items():
+        if user not in individual_standings:
+            individual_standings[user] = 0
+        individual_standings[user] += points
+individual_standings = dict(sorted(individual_standings.items(), key=lambda kvp: (-kvp[1], kvp)))
 print(f"Individual standings:")
-counter = 0
-for key, value in individual_standing.items():
+counter = 1
+for user, points in individual_standings.items():
+    print(f"{counter}. {user} -> {points}")
     counter += 1
-    print(f"{counter}. {key} -> {value}")
