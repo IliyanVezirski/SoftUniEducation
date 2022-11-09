@@ -14,7 +14,7 @@ while data != "Season end":
                 if players[player][position] < skill:
                     players[player][position] = skill
             else:
-                players[player].update({position: skill})
+                players[player][position] = skill
     else:
         data = data.split(" vs ")
         player1 = data[0]
