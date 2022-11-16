@@ -10,6 +10,12 @@ for match in matched_words:
     counter_of_match += 1
     if match['first_word'][::-1] == match['second_word']:
         matched.append(f"{match['first_word']} <=> {match['second_word']}")
-print(f"{counter_of_match} word pairs found!")
-print("The mirror words are:")
-print(*matched, sep=', ')
+if counter_of_match > 0:
+    print(f"{counter_of_match} word pairs found!")
+else:
+    print(f"No word pairs found!")
+if matched:
+    print("The mirror words are:")
+    print(*matched, sep=', ')
+else:
+    print(f"No mirror words!")
