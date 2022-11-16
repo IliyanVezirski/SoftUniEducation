@@ -1,7 +1,6 @@
 def drive(garage: dict, car: str, distance: int, fuel: int):
     if garage[car]['fuel'] - fuel < 0:
         print(f"Not enough fuel to make that ride")
-        return garage
     else:
         garage[car]['fuel'] -= fuel
         garage[car]['mileage'] += distance
@@ -9,7 +8,7 @@ def drive(garage: dict, car: str, distance: int, fuel: int):
         if garage[car]['mileage'] >= 100000:
             print(f"Time to sell the {car}!")
             del garage[car]
-        return garage
+    return garage
 
 
 def refuel(garage: dict, car: str, fuel):
