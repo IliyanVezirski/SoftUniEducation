@@ -8,7 +8,7 @@ def insert_space(current_msg: str, index: int):
 
 def reverse(current_msg: str, substring: str):
     if substring in current_msg:
-        current_msg = current_msg.replace(substring, "")
+        current_msg = current_msg.replace(substring, "", 1)
         substring = substring[::-1]
         current_msg = current_msg + substring
         print(current_msg)
