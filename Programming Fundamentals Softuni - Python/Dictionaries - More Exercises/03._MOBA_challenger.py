@@ -35,10 +35,6 @@ while data != "Season end":
                         elif players[player2][position_to_compare] < players[player1][position_to_compare]:
                             del players[player2]
                             break
-                        elif players[player2][position_to_compare] == players[player1][position_to_compare]:
-                            continue
-                        else:
-                            continue
 
     data = input()
 players_total_points = {}

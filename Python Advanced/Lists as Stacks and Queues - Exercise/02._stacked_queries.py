@@ -10,9 +10,11 @@ for num in range(number):
         if stack:
             stack.pop()
     elif numbers.startswith('3'):
-        print(max(stack))
+        if stack:
+            print(max(stack))
     elif numbers.startswith('4'):
-        print(min(stack))
+        if stack:
+            print(min(stack))
 stack_to_print = []
 while stack:
     stack_to_print.append(stack.pop())
