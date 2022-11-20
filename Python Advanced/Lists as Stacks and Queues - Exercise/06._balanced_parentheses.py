@@ -12,6 +12,7 @@ for el in parentheses:
                 continue
             else:
                 balanced = False
+                break
         else:
             balanced = False
             break
