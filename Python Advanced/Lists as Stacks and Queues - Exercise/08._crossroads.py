@@ -17,21 +17,20 @@ while command != "END":
             current_car = queue.popleft()
             len_of_current_car = len(current_car)
 
-            current_green -= len_of_current_car
-            if current_green < 0:
-                left_parts = current_green * -1
+            if current_green < len_of_current_car:
+                left_parts = len_of_current_car - current_green
                 if left_parts > current_free_window:
+                    len_of_current_car -= current_green
                     print(f"A crash happened!")
-                    print(f"{current_car} was hit at {current_car[(current_green * -1)-1]}.")
+                    print(f"{current_car} was hit at {current_car[len_of_current_car-1]}.")
                     crash = True
-                    break
-                else:
-                    passed_cars += 1
+                    exit()
+            current_green -= len_of_current_car
+            passed_cars += 1
 
         if crash:
             break
 
-        passed_cars += 1
     else:
         queue.append(command)
     command = input()
