@@ -20,10 +20,11 @@ Output
 
 """
 import re
+
 string = input()
 pattern = r'(?P<sep>[=/])(?P<word>[A-Z][A-Za-z]{2,})(?P=sep)'
 valid_destinations = []
-destinations = re.findall(pattern,string)
+destinations = re.findall(pattern, string)
 for destination in destinations:
     valid_destinations.append(destination[1])
 points = 0
