@@ -3,10 +3,6 @@ rows = int(input())
 position = []
 found_position = False
 
-left_position = []
-right_position = []
-down_position = []
-up_position = []
 for index in range(rows):
     row = [i for i in input()]
     maze.append(row)
@@ -48,6 +44,10 @@ def down(position: list):
 
 
 while True:
+    left_position = []
+    right_position = []
+    down_position = []
+    up_position = []
     left_position = left(position)
     right_position = right(position)
     down_position = down(position)
@@ -55,7 +55,7 @@ while True:
     if left_position[1] >= len(maze[0]):
         print(f'Kate got out in {move + 1} moves')
         break
-    elif right_position[1] >= len(maze[0]):
+    if right_position[1] >= len(maze[0]):
         print(f'Kate got out in {move + 1} moves')
         break
     elif down_position[0] >= len(maze):
@@ -91,7 +91,3 @@ while True:
     else:
         print(f"Kate cannot get out")
         break
-    left_position = []
-    right_position = []
-    down_position = []
-    up_position = []
