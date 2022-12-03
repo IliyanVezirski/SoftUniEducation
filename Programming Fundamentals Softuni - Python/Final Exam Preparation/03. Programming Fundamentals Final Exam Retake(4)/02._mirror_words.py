@@ -1,6 +1,6 @@
 import re
 
-pattern = r'(?P<sep>[@]|[#])(?P<first_word>[A-Za-z]+)(?P=sep)(?P=sep)(?P<second_word>[A-Za-z]+)(?P=sep)'
+pattern = r'(?P<sep>[@]|[#])(?P<first_word>[A-Za-z]{3,})(?P=sep)(?P=sep)(?P<second_word>[A-Za-z]{3,})(?P=sep)'
 
 text = input()
 matches = re.finditer(pattern, text)
