@@ -6,7 +6,8 @@ def insert_space(current_message: str, index: int):
 
 def reverse(current_message: str, string_to_reverse: str):
     if string_to_reverse in current_message:
-        current_message = current_message.replace(string_to_reverse, string_to_reverse[::-1], 1)
+        current_message = current_message.replace(string_to_reverse, '', 1)
+        current_message = current_message + string_to_reverse[::-1]
         print(current_message)
     else:
         print(f'error')
