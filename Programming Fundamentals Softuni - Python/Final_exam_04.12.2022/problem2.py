@@ -12,9 +12,7 @@ for _ in range(number):
             word_to_translate = match[2]
             command = match[1]
             translated_word = []
-        for letter in word_to_translate:
-            translated_word.append(ord(letter))
-            translated_word = [str(i) for i in translated_word]
+        translated_word = [str(ord(letter)) for letter in word_to_translate]
         print(f"{command}: {' '.join(translated_word)}")
     else:
         print("The message is invalid")
