@@ -32,10 +32,8 @@ while matrix:
         right_direction(matrix)
     if matrix:
         down_direction(matrix)
-
     if matrix:
         left_direction(matrix)
-
     if matrix:
         up_direction(matrix)
 print(' '.join(spiral_matrix))
