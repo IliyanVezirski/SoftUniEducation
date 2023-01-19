@@ -10,7 +10,7 @@ print(time_in_seconds)
 tasks = deque()
 task = input()
 while task != "End":
-    tasks.apppend(task)
+    tasks.add(task)
     time_in_seconds += 1
     if robots:
         robot_to_take_task = robots.popleft()
