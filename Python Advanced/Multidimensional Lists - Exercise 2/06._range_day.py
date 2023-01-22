@@ -20,6 +20,7 @@ matrix = []
 left_targets = 0
 position_of_shooter = tuple()
 targets = []
+
 for r in range(matrix_size):
     current_raw = input().split()
     for c in range(len(current_raw)):
@@ -45,6 +46,7 @@ for _ in range(int(input())):
             if matrix[new_position[0]][new_position[1]] == 'x':
                 left_targets -= 1
                 targets.append([new_position[0], new_position[1]])
+                matrix[new_position[0]][new_position[1]] = '.'
                 break
             new_position = new_directions(direction, new_position)
     if left_targets == 0:
