@@ -38,41 +38,27 @@ number_of_presents = int(input())
 size_of_neighborhood = int(input())
 neighborhood = []
 santa_position = ()
-naughty_kids_places = []
 nice_kids_places = []
-cookies_places = []
-
 for r in range(size_of_neighborhood):
     neighborhood.append(input().split())
     for c in range(size_of_neighborhood):
         if neighborhood[r][c] == "S":
             santa_position = (r, c)
-        elif neighborhood[r][c] == 'X':
-            naughty_kids_places.append((r, c))
         elif neighborhood[r][c] == "V":
             nice_kids_places.append((r, c))
-        elif neighborhood[r][c] == "C":
-            cookies_places.append((r, c))
 nice_kids_left = len(nice_kids_places)
 command = input()
 while command != "Christmas morning":
     new_position = santa_moves(santa_position, command)
     if is_in_matrix(new_position, size_of_neighborhood):
         if neighborhood[new_position[0]][new_position[1]] == "C":
-            neighborhood[santa_position[0]][santa_position[1]] = '-'
-            neighborhood[new_position[0]][new_position[1]] = 'S'
-            santa_position = new_position
             number_of_presents, nice_kids_left = santa_stop_on_cookie(new_position, number_of_presents, nice_kids_left)
         elif neighborhood[new_position[0]][new_position[1]] == "V":
-            neighborhood[santa_position[0]][santa_position[1]] = '-'
-            neighborhood[new_position[0]][new_position[1]] = 'S'
-            santa_position = new_position
             number_of_presents -= 1
             nice_kids_left -= 1
-        else:
-            neighborhood[santa_position[0]][santa_position[1]] = '-'
-            neighborhood[new_position[0]][new_position[1]] = 'S'
-            santa_position = new_position
+        neighborhood[santa_position[0]][santa_position[1]] = '-'
+        neighborhood[new_position[0]][new_position[1]] = 'S'
+        santa_position = new_position
     if number_of_presents <= 0:
         break
     command = input()
