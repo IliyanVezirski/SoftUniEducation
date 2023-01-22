@@ -4,7 +4,6 @@ sequence = input().split()
 numbers_to_calculate = deque()
 
 for number in sequence:
-    result = 0
     if number.lstrip('-').isdigit():
         numbers_to_calculate.append(number)
     else:
