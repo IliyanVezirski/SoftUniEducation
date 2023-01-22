@@ -63,10 +63,6 @@ while command != "Christmas morning":
             neighborhood[new_position[0]][new_position[1]] = 'S'
             santa_position = new_position
             number_of_presents, nice_kids_left = santa_stop_on_cookie(new_position, number_of_presents, nice_kids_left)
-        elif neighborhood[new_position[0]][new_position[1]] == "X":
-            neighborhood[santa_position[0]][santa_position[1]] = '-'
-            neighborhood[new_position[0]][new_position[1]] = 'S'
-            santa_position = new_position
         elif neighborhood[new_position[0]][new_position[1]] == "V":
             neighborhood[santa_position[0]][santa_position[1]] = '-'
             neighborhood[new_position[0]][new_position[1]] = 'S'
