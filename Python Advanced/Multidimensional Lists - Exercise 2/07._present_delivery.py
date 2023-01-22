@@ -80,7 +80,7 @@ while command != "Christmas morning":
     if number_of_presents <= 0:
         break
     command = input()
-if number_of_presents <= 0 and nice_kids_left > 0:
+if number_of_presents <= 0 and 0 < nice_kids_left:
     print(f'Santa ran out of presents!')
 [print(*r) for r in neighborhood]
 if nice_kids_left == 0:
