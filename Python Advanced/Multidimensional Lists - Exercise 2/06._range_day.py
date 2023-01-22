@@ -1,63 +1,57 @@
+def new_directions(direction, current_position: tuple, steps=1):
+    if direction == "right":
+        return current_position[0], current_position[1] + steps
+    elif direction == "left":
+        return current_position[0], current_position[1] - steps
+    elif direction == 'down':
+        return current_position[0] + steps, current_position[1]
+    elif direction == 'up':
+        return current_position[0] - steps, current_position[1]
+
+
+def is_in_matrix(position: tuple, size=5):
+    if position[0] in range(size) and position[1] in range(size):
+        return True
+    return False
+
+
 matrix_size = 5
-field = [input().split() for r in range(matrix_size)]
-position = tuple()
-shots_positions = []
-for r in range(matrix_size):
-    for c in range(matrix_size):
-        if field[r][c] == "A":
-            position = (r, c)
-number_of_commands = int(input())
-for _ in range(number_of_commands):
-    command = input().split()
-    if command[0] == "move":
-        if command[1] == "up":
-            new_position = (position[0] - int(command[2]), position[1])
-        elif command[1] == "down":
-            new_position = (position[0] + int(command[2]), position[1])
-        elif command[1] == "left":
-            new_position = (position[0], int(command[2]) - position[1])
-        elif command[1] == "right":
-            new_position = (position[0], int(command[2]) + position[1])
-        if new_position[0] in range(5) and new_position[1] in range(5):
-            if field[new_position[0]][new_position[1]] == ".":
-                field[position[0]][position[1]] = "."
-                field[new_position[0]][new_position[1]] = 'A'
-                position = new_position
-        else:
-            continue
-    elif command[0] == "shoot":
-        if command[1] == 'right':
-            for right in range(position[1], 5):
-                if field[position[0]][right] == "x":
-                    field[position[0]][right] = '.'
-                    shots_positions.append([position[0], right])
-                    break
-        elif command[1] == "left":
-            for left in range(position[1] - 1, -1, -1):
-                if field[position[0]][left] == "x":
-                    field[position[0]][left] = '.'
-                    shots_positions.append([position[0], left])
-                    break
-        elif command[1] == "down":
-            for down in range(position[0], 5):
-                if field[down][position[1]] == "x":
-                    field[down][position[1]] = '.'
-                    shots_positions.append([down, position[1]])
-                    break
-        elif command == "up":
-            for up in range(position[0] - 1, -1, -1):
-                if field[up][position[1]] == "x":
-                    field[up][position[1]] = '.'
-                    shots_positions.append([up, position[1]])
-                    break
+matrix = []
 left_targets = 0
-for r in range(5):
-    for c in range(5):
-        if field[r][c] == "x":
+position_of_shooter = tuple()
+targets = []
+for r in range(matrix_size):
+    current_raw = input().split()
+    for c in range(len(current_raw)):
+        if current_raw[c] == "A":
+            position_of_shooter = (r, c)
+        elif current_raw[c] == "x":
             left_targets += 1
-if left_targets > 0:
-    print(f'Training not completed! {left_targets} targets left.')
-    [print(r) for r in shots_positions]
+    matrix.append(current_raw)
+matrix[position_of_shooter[0]][position_of_shooter[1]] = '.'
+for _ in range(int(input())):
+    command = input().split()
+    current_command = command[0]
+    direction = command[1]
+    if current_command == "move":
+        steps = int(command[2])
+        if is_in_matrix(new_directions(direction, position_of_shooter, steps)):
+            new_position = new_directions(direction, position_of_shooter, steps)
+            if matrix[new_position[0]][new_position[1]] == '.':
+                position_of_shooter = new_position
+    else:
+        new_position = new_directions(direction, position_of_shooter)
+        while is_in_matrix(new_position):
+            if matrix[new_position[0]][new_position[1]] == 'x':
+                left_targets -= 1
+                targets.append([new_position[0], new_position[1]])
+                break
+            new_position = new_directions(direction, new_position)
+    if left_targets == 0:
+        break
+if left_targets == 0:
+    print(f'Training completed! All {len(targets)} targets hit.')
 else:
-    print(f'Training completed! All {len(shots_positions)} targets hit.')
-    [print(r) for r in shots_positions]
+    print(f'Training not completed! {left_targets} targets left.')
+if targets:
+    print(*targets, sep='\n')
