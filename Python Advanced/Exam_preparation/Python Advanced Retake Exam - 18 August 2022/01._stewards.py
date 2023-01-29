@@ -46,14 +46,14 @@ while first_sequence and second_sequence:
     current_char = chr(sum_of_first_and_second)
     first_check = f'{current_first}{current_char}'
     second_check = f'{current_second}{current_char}'
-    for seat in seats:
-        if seat == first_check or seat == second_check:
-            taken_seats.append(seat)
+    for seat in taken_seats:
+        if first_check == seat or second_check == seat:
             founded = True
             break
     if not founded:
-        for seat in taken_seats:
-            if first_check == seat or second_check == seat:
+        for seat in seats:
+            if seat == first_check or seat == second_check:
+                taken_seats.append(seat)
                 founded = True
                 break
     if not founded:
