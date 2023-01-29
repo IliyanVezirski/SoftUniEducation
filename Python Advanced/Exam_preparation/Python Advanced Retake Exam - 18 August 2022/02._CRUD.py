@@ -44,4 +44,65 @@ Examples
 
 """
 
+
+def new_direction(position: tuple, direction, ):
+    directions = {
+        'right': (0, +1),
+        'left': (0, -1),
+        'down': (+1, 0),
+        'up': (-1, 0)
+    }
+    return position[0] + directions[direction][0], position[1] + directions[direction][1]
+
+
+def create(direction: str, value, old_position):
+    new_position = new_direction(old_position, direction)
+    if matrix[new_position[0]][new_position[1]] == '.':
+        matrix[new_position[0]][new_position[1]] = value
+    return new_position
+
+
+def update(direction: str, value, old_position):
+    new_position = new_direction(old_position, direction)
+    if matrix[new_position[0]][new_position[1]] != '.':
+        matrix[new_position[0]][new_position[1]] = value
+    return new_position
+
+
+def delete(direction: str, old_position):
+    new_position = new_direction(old_position, direction)
+    if matrix[new_position[0]][new_position[1]] != ".":
+        matrix[new_position[0]][new_position[1]] = '.'
+    return new_position
+
+
+def read(direction: str, old_position):
+    new_position = new_direction(old_position, direction)
+    if matrix[new_position[0]][new_position[1]] != '.':
+        print(matrix[new_position[0]][new_position[1]])
+    return new_position
+
+
 matrix_size = 6
+matrix = []
+for row in range(matrix_size):
+    matrix.append(input().split())
+
+position_data = input().split(', ')
+current_position = (int(position_data[0][1]), int(position_data[1][0]))
+
+command = input()
+
+while command != "Stop":
+    command = command.split(', ')
+    if command[0] == 'Create':
+        current_position = create(command[1], command[2], current_position)
+    elif command[0] == "Update":
+        current_position = update(command[1], command[2], current_position)
+    elif command[0] == "Read":
+        current_position = read(command[1], current_position)
+    elif command[0] == "Delete":
+        current_position = delete(command[1], current_position)
+
+    command = input()
+[print(' '.join(i)) for i in matrix]
