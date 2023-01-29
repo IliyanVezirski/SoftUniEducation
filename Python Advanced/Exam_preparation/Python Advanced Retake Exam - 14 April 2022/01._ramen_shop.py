@@ -44,7 +44,7 @@ while bowls_of_ramen and costumers:
         costumers[0] = current_costumer
         bowls_of_ramen.pop()
 if not costumers:
-    print(f"Great job! You served all the customers")
+    print(f"Great job! You served all the customers.")
     if bowls_of_ramen:
         print(f"Bowls of ramen left: {', '.join(list(map(str,bowls_of_ramen)))}")
 else:
