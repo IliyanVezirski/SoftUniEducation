@@ -77,5 +77,4 @@ def naughty_or_nice_list(*args, **kwargs):
     for status, kids in final_kids.items():
         if kids:
             final_result += status + ': ' + ', '.join(kids) + '\n'
-    return  final_result
-
+    return final_result
