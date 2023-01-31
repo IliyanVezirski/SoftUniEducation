@@ -10,13 +10,6 @@ Porcelain Sculpture	200 to 299
 Gold	300 to 399
 Diamond Jewellery	400 to 499
 
-
-
-
-
-
-
-
 To make a present, you should take the last integer of materials and sum it with the first magic level value.
 If the result is between or equal to the numbers described in the table above, you make the corresponding gift and
 remove both materials and magic value. Otherwise:
