@@ -49,14 +49,29 @@ fireworks_dict = {
     'Crossette Fireworks': 0
 }
 
-fireworks = deque([int(i) for i in input().split(", ") if int(i) > 0])
-explosive = [int(i) for i in input().split(', ') if int(i) > 0]
+fireworks = deque([int(i) for i in input().split(", ")])
+explosive = [int(i) for i in input().split(', ')]
 
 while fireworks and explosive:
     if check_if_successfully(fireworks_dict):
         break
     current_firework = fireworks[0]
     current_explosive = explosive[-1]
+    while current_firework <= 0 and fireworks:
+        if fireworks:
+            current_firework = fireworks[0]
+        else:
+            break
+        if not fireworks:
+            break
+        else:
+            fireworks.popleft()
+    while current_explosive <= 0 and explosive:
+        if explosive:
+            explosive.pop()
+        else:
+            break
+        current_explosive = explosive[-1]
     value_to_check = current_explosive + current_firework
     if value_to_check % 3 == 0 and value_to_check % 5 != 0:
         fireworks_dict['Palm Fireworks'] += 1
@@ -75,6 +90,8 @@ while fireworks and explosive:
             fireworks.append(fireworks.popleft() - 1)
         else:
             fireworks.popleft()
+    if check_if_successfully(fireworks_dict):
+        break
 if check_if_successfully(fireworks_dict):
     print(f"Congrats! You made the perfect firework show!")
 else:
