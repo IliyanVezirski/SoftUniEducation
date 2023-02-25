@@ -1,6 +1,7 @@
 class Vet:
     space = 5
     animals = []
+
     def __init__(self, name):
         self.name = name
         self.current_animals = 0
@@ -24,4 +25,3 @@ class Vet:
 
     def info(self):
         return f'{self.name} has {self.current_animals} animals. {self.space - len(self.animals)} space left in clinic'
-
