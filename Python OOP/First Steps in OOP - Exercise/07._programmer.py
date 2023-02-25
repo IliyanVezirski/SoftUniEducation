@@ -21,6 +21,7 @@ class Programmer:
         elif self.skills < skills_needed:
             return f"{self.name} needs {abs(self.skills - skills_needed)} more skills"
 
+
 programmer = Programmer("John", "Java", 50)
 print(programmer.watch_course("Python Masterclass", "Python", 84))
 print(programmer.change_language("Java", 30))
