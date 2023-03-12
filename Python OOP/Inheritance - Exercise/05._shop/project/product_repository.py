@@ -20,8 +20,4 @@ class ProductRepository():
                 break
 
     def __repr__(self):
-        result = ''
-        for product_to_check in self.products:
-            result += f'{product_to_check.name}: {product_to_check.quantity}\n'
-        return result
-
+        return '\n'.join([f'{p.name}: {p.quantity}' for p in self.products])
